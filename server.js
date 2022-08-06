@@ -1,16 +1,28 @@
 const express = require('express');
 const db = require('./config/connection');
 const routes = require('./routes');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 const PORT = 3001;
+const MONGOPORT = 27017;
 const app = express();
 
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: `mongodb://localhost:${MONGOPORT}` }),
+};
+
+app.use(session(sess));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
 db.once('open', () => {
   app.listen(PORT, () => {
-    console.log(`API server running on port ${PORT}!`);
+    console.log(`Server running on port ${PORT}!`);
   });
 });
