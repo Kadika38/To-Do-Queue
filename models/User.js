@@ -22,9 +22,8 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.pre('save', async (newUserData) => {
-    newUserData.password = await bcrypt.hash(newUserData.password, 10);
-    return newUserData;
+userSchema.pre('save', async function() {
+    this.password = await bcrypt.hash(this.password, 10);
   },
 );
 
