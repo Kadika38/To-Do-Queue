@@ -51,7 +51,7 @@ module.exports = {
       res.status(500).json(err);
     });
   },
-  login(req, res) {
+  async login(req, res) {
     const userData = await User.findOne({ where: { username: req.body.username } });
     
     if (!userData) {
