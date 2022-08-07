@@ -77,4 +77,20 @@ module.exports = {
       res.json({ user: userData, message: 'You are now logged in!' });
     });
   },
+  createTodo(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $addToSet: {todos: req.body} },
+      { runValidators: true, new: true }
+    )
+    .then((user) => 
+      !user
+        ? res.status(404).json({ message: 'No user with this id!'})
+        : res.json(user)
+    )
+    .catch((err) => res.status(500).json(err));
+  },
+  deleteTodo(req, res) {
+
+  },
 };
