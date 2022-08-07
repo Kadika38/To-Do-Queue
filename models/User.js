@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Todo = require('./Todo');
 
 const userSchema = new Schema(
   {
@@ -13,6 +14,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    todos: [Todo],
   },
   {
     /* toJSON: {
