@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// Note: think about using moment here for date formatting
 const todoSchema = new Schema(
   {
     username: {
