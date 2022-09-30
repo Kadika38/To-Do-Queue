@@ -8,7 +8,6 @@ import {
 } from "@apollo/client";
 import "./index.css";
 import { setContext } from "@apollo/client/link/context";
-import Auth from "./utils/auth";
 import Main from "./pages/Main/Main";
 import Login from "./pages/Login/Login"
 
@@ -36,7 +35,8 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <Routes>
-          <Route path="/" element={Auth.loggedIn() ? <Main /> : <Login />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </ApolloProvider>
