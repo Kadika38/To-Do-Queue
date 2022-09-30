@@ -6,9 +6,11 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
+import { setContext } from "@apollo/client/link/context";
+import Auth from "./utils/auth";
+import Main from "./pages/Main/Main";
+import Login from "./pages/Login/Login"
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -33,11 +35,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Header />
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={Auth.loggedIn() ? <Main /> : <Login />} />
         </Routes>
-        <Footer />
       </Router>
     </ApolloProvider>
   );
