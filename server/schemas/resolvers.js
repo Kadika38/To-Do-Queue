@@ -5,8 +5,11 @@ const { AuthenticationError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     user: async () => {
-        return User.find({});
+        return User.find({}).populate('todo');
     },
+    oneUser: async (parent, { profileId }) => {
+        return User.findOne({ _id: profileId }).populate('todo');
+      },
   },
   Mutation: {
     addUser: async (parent, { username, password }) => {
