@@ -16,11 +16,11 @@ const todoSchema = new Schema({
     repeatTime: {
         type: Number,
     }
-},
-{
+  },
+  {
   timestamps: true,
-});
+  });
 
-const Todo = model('Todo', todoSchema);
-
-module.exports = Todo;
+  const Todo = model('Todo', todoSchema);
+  
+  module.exports = Todo;

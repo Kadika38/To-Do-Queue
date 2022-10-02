@@ -1,15 +1,15 @@
-const { User } = require('../models');
+const { User, Todo } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
     user: async () => {
-        return User.find({}).populate('todo');
+        return User.find({});
     },
     oneUser: async (parent, { profileId }) => {
-        return User.findOne({ _id: profileId }).populate('todo');
-      },
+        return User.findOne({ _id: profileId });
+    },
   },
   Mutation: {
     addUser: async (parent, { username, password }) => {
@@ -33,6 +33,29 @@ const resolvers = {
   
         const token = signToken(user);
         return { token, user };
+    },
+    addTodo: async (parent, args) => {
+      const userId = args.profileId;
+      delete args.profileId;
+
+      const upduser = await User.findOneAndUpdate(
+        { _id: userId },
+        {
+          $addToSet: {
+            todos: { ...args }
+          },
+        },
+        {
+          new: true,
+        },
+      );
+
+      console.log(upduser);
+
+      return upduser;
+    },
+    deleteUser: async (parent, { profileId }) => {
+      return User.findByIdAndDelete({ _id: profileId });
     },
   },
 };
