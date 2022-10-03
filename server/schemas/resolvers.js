@@ -12,6 +12,7 @@ const resolvers = {
     },
   },
   Mutation: {
+    //User mutations
     addUser: async (parent, { username, password }) => {
         const user = await User.create({ username, password });
         const token = signToken(user);
@@ -34,11 +35,16 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
     },
+    deleteUser: async (parent, { profileId }) => {
+      return User.findByIdAndDelete({ _id: profileId });
+    },
+
+    //Todo mututations
     addTodo: async (parent, args) => {
       const userId = args.profileId;
       delete args.profileId;
 
-      const upduser = await User.findOneAndUpdate(
+      return User.findOneAndUpdate(
         { _id: userId },
         {
           $addToSet: {
@@ -49,13 +55,16 @@ const resolvers = {
           new: true,
         },
       );
-
-      console.log(upduser);
-
-      return upduser;
     },
-    deleteUser: async (parent, { profileId }) => {
-      return User.findByIdAndDelete({ _id: profileId });
+    deleteTodo: async (parent, args) => {
+      return User.findOneAndUpdate(
+        { _id: args.profileId },
+        {
+          $pull: {
+            todos: { _id: args.todoId },
+          },
+        },
+      );
     },
   },
 };
