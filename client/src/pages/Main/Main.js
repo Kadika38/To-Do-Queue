@@ -7,9 +7,14 @@ import { ONE_USER } from "../../utils/queries";
 
 export default function Main() {
 
+    /* const userId = Auth.getUser().data._id; */
+    let userId = null;
+    if (Auth.loggedIn) {
+        userId = Auth.getUser().data._id;
+    }
 
-    const userId = Auth.getUser().data._id;
     const { loading, data } = useQuery(ONE_USER, {
+        skip: (!Auth.loggedIn()),
         variables:{
             profileId: userId,
         },
@@ -33,8 +38,10 @@ export default function Main() {
     const todos = data.oneUser.todos;
     const todoQueue = [...todos];
     todoQueue.sort((a, b) => a.deadline-b.deadline);
-    //LATER: put this func in a util file later
-    console.log(todoQueue);
+    
+    //date testing
+    const f = new Date();
+    console.log(f);
 
     return (
         <div className="mainContainer">
