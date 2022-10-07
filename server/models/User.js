@@ -7,7 +7,7 @@ const todoSchema = new Schema({
     required: true,
   },
   deadline: {
-    type: Number,
+    type: String,
     required: true,
   },
   repeat: {

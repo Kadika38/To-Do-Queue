@@ -41,6 +41,7 @@ const resolvers = {
 
     //Todo mututations
     addTodo: async (parent, args) => {
+      console.log(args);
       const userId = args.profileId;
       delete args.profileId;
 

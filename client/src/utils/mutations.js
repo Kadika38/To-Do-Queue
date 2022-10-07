@@ -23,3 +23,20 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_TODO = gql`
+  mutation addTodo($profileId: ID!, $title: String!, $deadline: String!, $repeat: Boolean!, $repeatTime: Int) {
+    addTodo(profileId: $profileId, title: $title, deadline: $deadline, repeat: $repeat, repeatTime: $repeatTime) {
+      _id
+      username
+      password
+      todos {
+        _id
+        title
+        deadline
+        repeat
+        repeatTime
+      }
+    }
+  }
+`;

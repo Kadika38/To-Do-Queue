@@ -55,7 +55,7 @@ export default function Main() {
                     UPNEXT
                 </div>
                 <div className="column">
-                    <Create />
+                    <Create userId={userId}/>
                 </div>
             </div>
         </div>
