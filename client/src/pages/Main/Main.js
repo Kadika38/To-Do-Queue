@@ -5,6 +5,8 @@ import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { ONE_USER } from "../../utils/queries";
 import Create from "./components/Create";
+import Upnext from "./components/Upnext";
+import Todo from "./components/Todo";
 
 export default function Main() {
     let userId = null;
@@ -39,6 +41,9 @@ export default function Main() {
     todoQueue.sort((a, b) => a.deadline-b.deadline).map((todo) => {
         return new Date(todo);
     });
+    console.log(todoQueue);
+    const next = todoQueue[0];
+    const therest = todoQueue.slice(1);
     
     //date testing: this is how to store dates as ints and how to turn them back into  dates
     /* const f = new Date();
@@ -49,10 +54,14 @@ export default function Main() {
         <div className="mainContainer">
             <div className="subContainer">
                 <div className="column">
-                    QUEUE
+                    {therest.map((item) => {
+                        return (
+                            <Todo _id={item._id} title={item.title} deadline={item.deadline} repeat={item.repeat} repeatTime={item.repeatTime} />
+                        );
+                    })}
                 </div>
                 <div className="column">
-                    UPNEXT
+                    <Upnext _id={next._id} title={next.title} deadline={next.deadline} repeat={next.repeat} repeatTime={next.repeatTime} />
                 </div>
                 <div className="column">
                     <Create userId={userId}/>

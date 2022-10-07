@@ -18,3 +18,9 @@
     border-style: solid;
     border-radius: 5px;
 }
+
+.queue-todo {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
