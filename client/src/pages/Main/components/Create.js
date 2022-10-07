@@ -13,13 +13,12 @@ export default function Create(props) {
     const createFormHandler = async (event) => {
         event.preventDefault();
 
-        const repeatBool = (repeatRef.current.value === "on") ? true : false;
         const rt = parseInt(rtRef.current.value);
-        
-        if (repeatBool) {
+
+        if (repeatRef.current.checked) {
             try {
                 const { data } = await addTodo({
-                    variables: { profileId: props.userId, title: titleRef.current.value, deadline: deadlineRef.current.value, repeat: repeatBool, repeatTime: rt }
+                    variables: { profileId: props.userId, title: titleRef.current.value, deadline: deadlineRef.current.value, repeat: true, repeatTime: rt }
                 });
             } catch (error) {
                 console.log(JSON.stringify(error.networkError));
@@ -33,6 +32,8 @@ export default function Create(props) {
                 console.log(error);
             }
         }
+
+        titleRef.current.value = "";
     }
 
     return (
