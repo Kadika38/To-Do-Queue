@@ -4,12 +4,11 @@ import "./style.css";
 import Auth from "../../utils/auth";
 import { useQuery } from "@apollo/client";
 import { ONE_USER } from "../../utils/queries";
+import Create from "./components/Create";
 
 export default function Main() {
-
-    /* const userId = Auth.getUser().data._id; */
     let userId = null;
-    if (Auth.loggedIn) {
+    if (Auth.loggedIn()) {
         userId = Auth.getUser().data._id;
     }
 
@@ -37,11 +36,14 @@ export default function Main() {
 
     const todos = data.oneUser.todos;
     const todoQueue = [...todos];
-    todoQueue.sort((a, b) => a.deadline-b.deadline);
+    todoQueue.sort((a, b) => a.deadline-b.deadline).map((todo) => {
+        return new Date(todo);
+    });
     
-    //date testing
-    const f = new Date();
-    console.log(f);
+    //date testing: this is how to store dates as ints and how to turn them back into  dates
+    /* const f = new Date();
+    const f2 = f.getTime();
+    const f3 = new Date(f2); */
 
     return (
         <div className="mainContainer">
@@ -53,7 +55,7 @@ export default function Main() {
                     UPNEXT
                 </div>
                 <div className="column">
-                    CREATE NEW
+                    <Create />
                 </div>
             </div>
         </div>
