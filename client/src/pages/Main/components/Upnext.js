@@ -8,6 +8,7 @@ export default function Upnext(props) {
             <p>Title: {props.title}</p>
             <p>Repeat? {props.repeat}</p>
             <p>RepeatTime: {props.repeatTime}</p>
+            <p>Creation: {props.creation}</p>
         </div>
     );
 };

@@ -25,8 +25,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_TODO = gql`
-  mutation addTodo($profileId: ID!, $title: String!, $repeat: Boolean!, $repeatTime: Int) {
-    addTodo(profileId: $profileId, title: $title, repeat: $repeat, repeatTime: $repeatTime) {
+  mutation addTodo($profileId: ID!, $title: String!, $repeat: Boolean!, $repeatTime: Int, $creation: Int) {
+    addTodo(profileId: $profileId, title: $title, repeat: $repeat, repeatTime: $repeatTime, creation: $creation) {
       _id
       username
       password
@@ -35,6 +35,7 @@ export const ADD_TODO = gql`
         title
         repeat
         repeatTime
+        creation
       }
     }
   }
