@@ -12,6 +12,9 @@ const todoSchema = new Schema({
   },
   repeatTime: {
       type: Number,
+  },
+  creation: {
+    type: Number,
   }
 },
 {
