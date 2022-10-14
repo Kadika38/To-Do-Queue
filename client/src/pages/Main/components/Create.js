@@ -4,7 +4,6 @@ import { ADD_TODO } from "../../../utils/mutations";
 
 export default function Create(props) {
     const titleRef = React.useRef();
-    const deadlineRef = React.useRef();
     const repeatRef = React.useRef();
     const rtRef = React.useRef();
 
@@ -18,7 +17,7 @@ export default function Create(props) {
         if (repeatRef.current.checked) {
             try {
                 const { data } = await addTodo({
-                    variables: { profileId: props.userId, title: titleRef.current.value, deadline: deadlineRef.current.value, repeat: true, repeatTime: rt }
+                    variables: { profileId: props.userId, title: titleRef.current.value, repeat: true, repeatTime: rt }
                 });
             } catch (error) {
                 console.log(JSON.stringify(error.networkError));
@@ -26,7 +25,7 @@ export default function Create(props) {
         } else {
             try {
                 const { data } = await addTodo({
-                    variables: { profileId: props.userId, title: titleRef.current.value, deadline: deadlineRef.current.value, repeat: false }
+                    variables: { profileId: props.userId, title: titleRef.current.value, repeat: false }
                 });
             } catch (error) {
                 console.log(error);
@@ -41,8 +40,6 @@ export default function Create(props) {
             <form onSubmit={(event) => createFormHandler(event)}>
                 <label htmlFor="title">Title: </label>
                 <input type="text" id="title" ref={titleRef}></input>
-                <label htmlFor="deadline">Deadline: </label>
-                <input type="datetime-local" id="deadline" ref={deadlineRef}></input>
                 <label htmlFor="repeat">Repeat? </label>
                 <input type="checkbox" id="repeat" ref={repeatRef}></input>
                 <label htmlFor="repeat-time">Repeat when?</label>
