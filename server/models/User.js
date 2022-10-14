@@ -6,10 +6,6 @@ const todoSchema = new Schema({
     type: String,
     required: true,
   },
-  deadline: {
-    type: String,
-    required: true,
-  },
   repeat: {
       type: Boolean,
       required: true,
