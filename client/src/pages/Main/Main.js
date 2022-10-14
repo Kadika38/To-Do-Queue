@@ -38,25 +38,17 @@ export default function Main() {
 
     const todos = data.oneUser.todos;
     const todoQueue = [...todos];
-    todoQueue.sort((a, b) => a.deadline-b.deadline).map((todo) => {
-        return new Date(todo);
-    });
-    console.log(todoQueue);
-    const next = todoQueue[0];
-    const therest = todoQueue.slice(1);
+    todoQueue.sort((a, b) => a.spot-b.spot);
 
     return (
         <div className="mainContainer">
             <div className="subContainer">
                 <div className="column">
-                    {therest.map((item) => {
+                    {todoQueue.map((item) => {
                         return (
                             <Todo _id={item._id} title={item.title} repeat={item.repeat} repeatTime={item.repeatTime} creation={item.creation} />
                         );
                     })}
-                </div>
-                <div className="column">
-                    <Upnext _id={next._id} title={next.title} repeat={next.repeat} repeatTime={next.repeatTime} creation={next.creation} />
                 </div>
                 <div className="column">
                     <Create userId={userId}/>
