@@ -41,9 +41,11 @@ const resolvers = {
 
     //Todo mututations
     addTodo: async (parent, args) => {
-      console.log(args);
       const userId = args.profileId;
       delete args.profileId;
+
+      const now = (new Date()).toString();
+      args.creation = now;
 
       return User.findOneAndUpdate(
         { _id: userId },

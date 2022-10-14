@@ -14,13 +14,11 @@ export default function Create(props) {
 
         const rt = parseInt(rtRef.current.value);
 
-        const now = parseInt(new Date());
-
 
         if (repeatRef.current.checked) {
             try {
                 const { data } = await addTodo({
-                    variables: { profileId: props.userId, title: titleRef.current.value, repeat: true, repeatTime: rt, creation: now }
+                    variables: { profileId: props.userId, title: titleRef.current.value, repeat: true, repeatTime: rt }
                 });
             } catch (error) {
                 console.log(JSON.stringify(error.networkError));

@@ -18,7 +18,8 @@ const typeDefs = gql`
     title: String!
     repeat: Boolean!
     repeatTime: Int
-    creation: Int
+    creation: String!
+    spot: Int
   }
 
   type Query {
@@ -31,7 +32,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     deleteUser(profileId: ID!): User
 
-    addTodo(profileId: ID!, title: String!, repeat: Boolean!, repeatTime: Int, creation: Int): User
+    addTodo(profileId: ID!, title: String!, repeat: Boolean!, repeatTime: Int): User
     deleteTodo(profileId: ID!, todoId: ID!): User
   }
 `;

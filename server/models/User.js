@@ -14,6 +14,9 @@ const todoSchema = new Schema({
       type: Number,
   },
   creation: {
+    type: String,
+  },
+  spot: {
     type: Number,
   }
 },
