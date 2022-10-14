@@ -9,7 +9,6 @@ query OneUser($profileId: ID!) {
       todos {
         _id
         title
-        deadline
         repeat
         repeatTime
       }

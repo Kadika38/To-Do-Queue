@@ -16,7 +16,6 @@ const typeDefs = gql`
   type Todo {
     _id: ID!
     title: String!
-    deadline: String!
     repeat: Boolean!
     repeatTime: Int
   }
@@ -31,7 +30,7 @@ const typeDefs = gql`
     login(username: String!, password: String!): Auth
     deleteUser(profileId: ID!): User
 
-    addTodo(profileId: ID!, title: String!, deadline: String!, repeat: Boolean!, repeatTime: Int): User
+    addTodo(profileId: ID!, title: String!, repeat: Boolean!, repeatTime: Int): User
     deleteTodo(profileId: ID!, todoId: ID!): User
   }
 `;
