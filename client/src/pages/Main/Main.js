@@ -44,11 +44,6 @@ export default function Main() {
     console.log(todoQueue);
     const next = todoQueue[0];
     const therest = todoQueue.slice(1);
-    
-    //date testing: this is how to store dates as ints and how to turn them back into  dates
-    /* const f = new Date();
-    const f2 = f.getTime();
-    const f3 = new Date(f2); */
 
     return (
         <div className="mainContainer">
@@ -56,12 +51,12 @@ export default function Main() {
                 <div className="column">
                     {therest.map((item) => {
                         return (
-                            <Todo _id={item._id} title={item.title} deadline={item.deadline} repeat={item.repeat} repeatTime={item.repeatTime} />
+                            <Todo _id={item._id} title={item.title} repeat={item.repeat} repeatTime={item.repeatTime} creation={item.creation} />
                         );
                     })}
                 </div>
                 <div className="column">
-                    <Upnext _id={next._id} title={next.title} deadline={next.deadline} repeat={next.repeat} repeatTime={next.repeatTime} />
+                    <Upnext _id={next._id} title={next.title} repeat={next.repeat} repeatTime={next.repeatTime} creation={next.creation} />
                 </div>
                 <div className="column">
                     <Create userId={userId}/>
