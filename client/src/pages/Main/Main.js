@@ -100,6 +100,7 @@ export default function Main() {
     };
 
     console.log("render");
+    console.log(tq);
 
     return (
         <div className="mainContainer">
