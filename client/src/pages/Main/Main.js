@@ -50,6 +50,7 @@ export default function Main() {
     };
 
     const todos = data.oneUser.todos;
+    console.log(todos);
     let todoQueue = JSON.parse(JSON.stringify(todos));
     if (firstRender) {
         setTq(todoQueue);

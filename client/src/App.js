@@ -1,26 +1,25 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
 import {
   ApolloClient,
-  ApolloProvider,
   InMemoryCache,
+  ApolloProvider,
   createHttpLink,
-} from "@apollo/client";
-import "./index.css";
-import { setContext } from "@apollo/client/link/context";
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Main from "./pages/Main/Main";
-import Login from "./pages/Login/Login"
+import Login from "./pages/Login/Login";
 
 const httpLink = createHttpLink({
-  uri: "/graphql",
+  uri: '/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("id_token");
+  const token = localStorage.getItem('id_token');
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -34,10 +33,12 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Routes>
-          <Route path="/main" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        <>
+          <Routes>
+            <Route path="/main" element={<Main />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </>
       </Router>
     </ApolloProvider>
   );
